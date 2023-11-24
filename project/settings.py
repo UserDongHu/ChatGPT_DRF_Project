@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "accounts",
-    # "blog",
+    "blog",
     # 설치한 라이브러리들
     'rest_framework',
     'rest_framework.authtoken',
