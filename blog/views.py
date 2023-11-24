@@ -5,11 +5,9 @@ from .permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
 from dotenv import load_dotenv
 import openai
 import os
-from django.http import HttpRequest
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
@@ -19,21 +17,8 @@ class PostViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         instance = serializer.save(user=self.request.user)
         
-        instance.answer = self.call_chat_ai_view(instance)
+        instance.answer = get_chat_ai_response(instance.question)
         instance.save()
-    
-    def call_chat_ai_view(self, post_instance):
-        request = HttpRequest()
-        request.method = 'POST'
-        request.data = {'question': post_instance.question}
-        
-        chat_ai_view = ChatAIView.as_view()
-        response = chat_ai_view(request)
-        
-        if response.status_code == status.HTTP_200_OK:
-            return response.data.get('answer')
-        else:
-            return Response({'detail': '답변을 받아올 수 없습니다.'}, status=status.HTTP_400_BAD_REQUEST)
         
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -70,24 +55,19 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
-        
-class ChatAIView(APIView):
-    
-    def post(self, request, *args, **kwargs):
-        question = request.data.get('question')
 
-        if not question:
-            return Response({'detail': 'Question is required'}, status=status.HTTP_400_BAD_REQUEST)
+def get_chat_ai_response(question):
+    if not question:
+        return None
 
-        model_engine = "text-davinci-003"
-        completions = openai.Completion.create(
-            engine=model_engine,
-            prompt=f"System: 지식인 답변자인 당신은 질문에 맞는 알맞은 답변을 해줍니다.\nUser: {question}",
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            temperature=0.5,
-        )
-        response = completions.choices[0].text.strip()[8:]
-
-        return Response({'answer': response})
+    model_engine = "text-davinci-003"
+    completions = openai.Completion.create(
+        engine=model_engine,
+        prompt=f"System: 지식인 답변자인 당신은 질문에 맞는 알맞은 답변을 해줍니다.\nUser: {question}",
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    response = completions.choices[0].text.strip()[8:]
+    return response
