@@ -202,5 +202,3 @@ Temporary Items
 *.icloud
 
 # End of https://www.toptal.com/developers/gitignore/api/django,macos
-
-FE/
