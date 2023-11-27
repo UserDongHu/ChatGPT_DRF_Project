@@ -48,15 +48,6 @@
 
 - accounts
 
-  
-| App       | URL                                        | Views Function    | HTML File Name                        | Note           |
-|-----------|--------------------------------------------|-------------------|---------------------------------------|----------------|
-| accounts  | '/signup'                                  | signup            | accounts/form.html                    | 회원가입         |
-| accounts  | '/login'                                   | login             | accounts/form.html                    | 로그인          |
-| accounts  | '/logout'                                  | logout            | -                                     | 로그아웃         |
-| accounts  | '/profile'                                 | profile           | accounts/profile.html                 | 내 프로필        |
-
-
 
 ### 3.3 플로우 차트
 
