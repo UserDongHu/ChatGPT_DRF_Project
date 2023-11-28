@@ -7,7 +7,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = serializers.StringRelatedField()
     
     class Meta:
         model = Comment
@@ -17,7 +17,7 @@ class CommentSerializer(serializers.ModelSerializer):
         }
 
 class PostSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    user = serializers.StringRelatedField()
     category = serializers.SlugRelatedField(queryset=Category.objects.all(), slug_field='name', many=False)
     like_users = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
