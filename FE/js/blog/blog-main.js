@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const profileLink = document.getElementById('profile-link');
     const logoutLink = document.getElementById('logout-link');
     const createLink = document.getElementById('create-link');
+    const postCommentsContainer = document.getElementById('post-comments');
+    const postFormContainer = document.getElementById('post-form');
 
     function isLoggedIn() {
         const token = localStorage.getItem('access_token'); // 로컬 스토리지에서 토큰을 가져옴
@@ -15,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 블로그 메인 초기화 함수
     function initializeBlogMain() {
+
+        postCommentsContainer.style.display = 'none';
+        postFormContainer.style.display = 'none';
 
         // 블로그 게시물 목록 요청
         const apiUrl = 'http://52.78.33.155:8000/blog/posts/';
@@ -84,6 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
             blogPostsContainer.style.display = 'block';
             // 게시물 상세정보 숨김
             postDetailsContainer.innerHTML = '';
+
+            postCommentsContainer.style.display = 'none';
+
+            postFormContainer.style.display = 'none';
         });
     }
 
@@ -105,6 +114,32 @@ document.addEventListener('DOMContentLoaded', function () {
             logoutLink.style.display = 'none';
             createLink.style.display = 'none';
         }
+    }
+
+    function updateComments(postId) {
+        const commentsApiUrl = `http://52.78.33.155:8000/blog/posts/${postId}/comments/`;
+
+        fetch(commentsApiUrl, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.length > 0) {
+                    const commentsHtml = data.map(comment => `
+                        <div class="comment">
+                            <p>${comment.user}: ${comment.content}</p>
+                        </div>
+                    `).join('');
+
+                    postCommentsContainer.innerHTML = commentsHtml;
+                } else {
+                    postCommentsContainer.innerHTML = '<p>댓글이 없습니다.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     // 게시물 상세정보 업데이트 함수
@@ -223,6 +258,61 @@ document.addEventListener('DOMContentLoaded', function () {
                     // 버튼들을 상세정보 컨테이너에 추가
                     postDetailsContainer.appendChild(deleteButton);
                 }
+                // 댓글 목록 업데이트
+                updateComments(postId);
+
+                postCommentsContainer.style.display = 'block';
+
+                // 로그인 상태 체크
+                if (isLoggedIn()) {
+
+                    postFormContainer.style.display = 'block';
+                    // 댓글 작성 폼 추가
+                    const commentFormHtml = `
+        <form id="comment-form">
+            <label for="comment-content">댓글 작성:</label>
+            <textarea id="comment-content" name="comment-content" rows="4" cols="50"></textarea>
+            <button type="submit">댓글 등록</button>
+        </form>
+    `;
+
+                    // post-form에 추가
+                    postFormContainer.innerHTML = commentFormHtml;
+
+                    // 댓글 작성 폼 제출 이벤트 처리
+                    const commentForm = document.getElementById('comment-form');
+
+                    commentForm.addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        const content = document.getElementById('comment-content').value;
+
+                        // 댓글 작성 요청 보내기
+                        const createCommentApiUrl = `http://52.78.33.155:8000/blog/posts/${postId}/comments/`;
+
+                        // 현재 로그인된 사용자의 토큰 가져오기
+                        const accessToken = localStorage.getItem('access_token');
+
+                        fetch(createCommentApiUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${accessToken}`,
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                content: content,
+                            }),
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    updateComments(postId);
+                                    document.getElementById('comment-content').value = "";
+                                } else {
+                                    console.error('댓글 작성 실패:', response.status);
+                                }
+                            });
+                    });
+                }
+
             })
             .catch(error => {
                 console.error('Error:', error);
