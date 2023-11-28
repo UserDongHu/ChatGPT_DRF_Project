@@ -20,10 +20,18 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(formDataObject),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                // HTTP 상태 코드가 200-299 범위에 속할 때
+                return response.json();
+            } else {
+                // HTTP 상태 코드가 200-299 범위 밖에 있을 때
+                throw new Error(`로그인에 실패했습니다. 상태 코드: ${response.status}`);
+            }
+        })
         .then(data => {
             if (data.access_token && data.refresh_token) {
-                // 성공적으로 토큰을 받았을 때
+                // 토큰이 성공적으로 받아졌을 때
                 saveTokens(data.access_token, data.refresh_token);
 
                 // 사용자 정보가 필요하다면 저장
@@ -31,15 +39,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     saveUserInfo(data.user);
                 }
 
-                // 로그인 성공 또는 실패 메시지 표시
-                messageContainer.innerHTML = `<p>${data.detail}</p>`;
+                // 성공 메시지 표시
+                messageContainer.innerHTML = `<p>로그인 성공</p>`;
+
+                // 로그인 성공 후 페이지 이동
+                window.location.href = '../blog/main.html';
             } else {
                 // 토큰이 없을 때
                 messageContainer.innerHTML = '<p>토큰을 받을 수 없습니다.</p>';
             }
         })
         .catch(error => {
-            console.error('Error:', error);
+            // 기타 오류 처리, 예를 들어 네트워크 문제 또는 서버 오류
+            console.error('에러:', error);
+            messageContainer.innerHTML = '<p>로그인에 실패했습니다. 다시 시도해주세요.</p>';
         });
     });
 

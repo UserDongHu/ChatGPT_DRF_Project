@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+</head>
+<body>
+    <h1>Create New Post</h1>
+    <form id="create-post-form">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="쇼핑">쇼핑</option>
+            <option value="스포츠, 레저">스포츠, 레저</option>
+            <option value="여행">여행</option>
+            <option value="경제">경제</option>
+            <option value="사회, 정치">사회, 정치</option>
+            <option value="건강">건강</option>
+            <option value="생활">생활</option>
+            <option value="엔터테인먼트, 예술">엔터테인먼트, 예술</option>
+            <option value="게임">게임</option>
+            <option value="컴퓨터통신">컴퓨터통신</option>
+            <option value="교육, 학문">교육, 학문</option>
+        </select>
+        <br>
+        <label for="question">Question:</label>
+        <textarea id="question" name="question" rows="4" cols="50"></textarea>
+        <br>
+        <button type="submit">Create Post</button>
+    </form>
+
+    <script src="../../js/blog/blog-create.js"></script>
+</body>
+</html>

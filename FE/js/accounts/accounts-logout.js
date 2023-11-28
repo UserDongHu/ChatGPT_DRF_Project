@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (response.ok) {
                 // 로그아웃 성공 시, 저장된 토큰과 사용자 정보 삭제
                 clearTokens();
-                window.location.href = '/FE/templates/accounts/login.html'; // 로그인 페이지로 리디렉션
+                window.location.href = 'login.html'; // 로그인 페이지로 리디렉션
             } else {
                 // 로그아웃 실패 시, 오류 메시지 표시 또는 다른 처리
                 console.error('로그아웃 실패');

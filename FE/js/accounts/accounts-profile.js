@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const profileHtml = `
             <p>사용자명: ${data.username}</p>
             <p>Email: ${data.email}</p>
-            <p>게시물 수: ${data.posting_num}</p>
-            <p>댓글 수: ${data.comment_num}</p>
-            <p>좋아요 수: ${data.like_num}</p>
+            <p>누적 게시물 수: ${data.posting_num}</p>
+            <p>누적 댓글 수: ${data.comment_num}</p>
+            <p>누른 좋아요 수: ${data.like_num}</p>
         `;
         profileContainer.innerHTML = profileHtml;
     })
