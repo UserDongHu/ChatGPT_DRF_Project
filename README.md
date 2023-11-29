@@ -57,11 +57,12 @@
 ## 3. 아키텍처/URL 구조 및 플로우 차트
 
   ### 3.1 아키텍처 구조
-  
+  <img width="512" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/878a3cbf-5e6b-4412-9d7a-f16393a6e09c">
+
 
 ### 3.2 URL 구조
 
-- accounts
+Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33.155:8000/api/schema/swagger-ui/)
 
 
 ### 3.3 플로우 차트
