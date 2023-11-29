@@ -118,23 +118,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateComments(postId) {
         const commentsApiUrl = `http://52.78.33.155:8000/blog/posts/${postId}/comments/`;
+        const currentUser = JSON.parse(localStorage.getItem('user_info'));
 
         fetch(commentsApiUrl, {
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => {
-
+    
                 if (data.length > 0) {
-                    const commentsHtml = data.map(comment => `
-                        <div class="comment">
-                            <p>${comment.user}: ${comment.content}</p>
-                        </div>
-                    `).join('');
-
+                    const commentsHtml = data.map(comment => {
+                        const deleteButton = isLoggedIn() && comment.user === currentUser.username ?
+                            `<button class="delete-comment-button" data-comment-id="${comment.id}">댓글 삭제</button>` : '';
+    
+                        return `
+                            <div class="comment">
+                                <p>${comment.user}: ${comment.content}</p>
+                                ${deleteButton}
+                            </div>
+                        `;
+                    }).join('');
+    
                     postCommentsContainer.innerHTML = commentsHtml;
+    
+                    // 삭제 버튼에 이벤트 리스너 추가
+                    const deleteButtons = document.querySelectorAll('.delete-comment-button');
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function () {
+                            const commentId = this.getAttribute('data-comment-id');
+                            deleteComment(postId, commentId);
+                        });
+                    });
                 } else {
                     postCommentsContainer.innerHTML = '<p>댓글이 없습니다.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    
+    function deleteComment(postId, commentId) {
+        const deleteCommentApiUrl = `http://52.78.33.155:8000/blog/posts/${postId}/comments/${commentId}/`;
+    
+        // 현재 로그인된 사용자의 토큰 가져오기
+        const accessToken = localStorage.getItem('access_token');
+    
+        fetch(deleteCommentApiUrl, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('댓글이 성공적으로 삭제되었습니다.');
+                    updateComments(postId); // 댓글 삭제 후 댓글 목록 업데이트
+                } else {
+                    console.error('댓글 삭제 실패:', response.status);
                 }
             })
             .catch(error => {
@@ -215,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (currentUser && currentUser.username === data.user) {
 
                     const deleteButton = document.createElement('button');
-                    deleteButton.innerText = '삭제';
+                    deleteButton.innerText = '게시물 삭제';
                     deleteButton.addEventListener('click', () => {
                         // 모달 열기
                         const confirmDelete = confirm('게시물을 삭제하시겠습니까?');
