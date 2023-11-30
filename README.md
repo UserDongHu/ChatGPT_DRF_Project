@@ -168,10 +168,45 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 ```
 
 ### 4.2 개발일정(WBS)
+```mermaid
+gantt
+    title ChatGPT DRF Project
+    dateFormat  YYYY-MM-DD
+    section 기획
+        레포지토리 생성 :2023-11-21, 1d
+        주제 선정 :2023-11-21, 2d
+        WBS :2023-11-22, 1d
+        화면 설계 :2023-11-22, 1d
+        플로우 차트 설계 :2023-11-22, 2d
+        URL 설계 :2023-11-23, 1d
+        Model 설계 :2023-11-23, 2d
 
+    section BE 구현
+        로그인/로그아웃 :2023-11-23, 1d
+        회원가입 :2023-11-23, 1d
+        프로필 페이지 : 2023-11-23, 1d
+        JWT 인증 :2023-11-23, 2d
+        게시물 상세/조회수 :2023-11-24, 1d
+        게시물 CRUD :2023-11-24, 1d
+        댓글 CRUD :2023-11-24, 1d
+        ChatGPT API 연결 :2023-11-24, 1d
+        AWS EC2 배포 :2023-11-24, 2d
+        Swagger :2023-11-25, 1d
+        
+    section FE 구현
+        로그인/로그아웃 :2023-11-27, 1d
+        회원가입 :2023-11-27, 1d
+        프로필 페이지 : 2023-11-27, 1d
+        JWT 인증 :2023-11-27, 2d
+        게시물 상세 :2023-11-28, 1d
+        게시글 CRUD :2023-11-28, 1d
+        댓글 CRUD :2023-11-28, 2d
+        Netlify 배포 :2023-11-29, 1d
+```
 
 ## 5. ERD 
 
+<img width="769" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/47abefcd-aa6c-4185-ad78-8cd490a834ba">
 
 
 
