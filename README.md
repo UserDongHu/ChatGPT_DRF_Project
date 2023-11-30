@@ -67,10 +67,80 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 
 ### 3.3 플로우 차트
 
+메인페이지
+
+<img width="672" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/76257eef-e2e7-4479-932f-b0ecc0069876">
+
+게시글 상세보기
+
+<img width="999" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/0b677c41-e2fb-42a2-9cdd-a1dfa0e1e3df">
 
 
-## 4. WBS
+## 4. 프로젝트 구조와 개발일정(WBS)
 
+### 프로젝트 구조
+```
+├── 📂FE
+│   ├── js
+│   │   ├── accounts
+│   │   │   ├── accounts-join.js
+│   │   │   ├── accounts-login.js
+│   │   │   ├── accounts-logout.js
+│   │   │   └── accounts-profile.js
+│   │   └── blog
+│   │       ├── blog-create.js
+│   │       └── blog-main.js
+│   └── templates
+│       ├── accounts
+│       │   ├── join.html
+│       │   ├── login.html
+│       │   ├── logout.html
+│       │   └── profile.html
+│       └── blog
+│           ├── create.html
+│           └── index.html
+├── README.md
+├── 📂accounts
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── managers.py
+│   ├── migrations
+│   ├── models.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── 📂blog
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   ├── models.py
+│   ├── permissions.py
+│   ├── serializers.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── manage.py
+├── media
+├── 📂project
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── requirements.txt
+├── static
+```
+
+### 개발일정(WBS)
 
 
 ## 5. ERD 
