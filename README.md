@@ -22,7 +22,7 @@
 
 ## 2. Stacks 및 배포 URL
 
-  ### Stacks
+  ### 2.1 Stacks
   
   * Enviroment
 
@@ -47,7 +47,7 @@
     ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 
 
-  ### 배포 URL
+  ### 2.2 배포 URL
    
    [https://stupendous-elf-84bccd.netlify.app/](https://stupendous-elf-84bccd.netlify.app/)
 
@@ -76,9 +76,9 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 <img width="999" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/0b677c41-e2fb-42a2-9cdd-a1dfa0e1e3df">
 
 
-## 4. 프로젝트 구조와 개발일정(WBS)
+## 4. 디렉토리 구조와 개발일정(WBS)
 
-### 프로젝트 구조
+### 4.1 디렉토리 구조
 ```
 ├── 📂FE
 │   ├── js
@@ -140,7 +140,7 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 ├── static
 ```
 
-### 개발일정(WBS)
+### 4.2 개발일정(WBS)
 
 
 ## 5. ERD 
