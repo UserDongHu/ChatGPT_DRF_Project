@@ -213,5 +213,40 @@ gantt
 
 ## 6. UI 
 
+* 로그인/로그아웃
+![로그인로그아웃](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/4eac7954-6b70-47f0-8abc-bee470fb0740)
+
+
+* 회원가입
+![회원가입](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/f3664588-04a7-4640-9d6d-46d5d27219b7)
+
+
+
+* 프로필
+![프로필](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/9a3fd915-9e89-4ade-b390-38849252891a)
+
+
+
+* 글쓰기
+![글쓰기](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/c9ad1032-c951-40e6-885e-b4e45208d16d)
+
+
+
+* 좋아요/댓글작성
+![좋아요 댓글작성](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/cbff4d10-f2f8-40d7-870e-6678b99de5d2)
+
+
+
+* 댓글 삭제
+![댓글삭제](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/254ea181-9789-4682-bd09-93d235a53d42)
+
+
+
+* 게시글 삭제
+![게시글 삭제](https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/8ceb1c6c-a3e7-4a7c-960c-405fb9b62e2d)
+
+
+
+
 
 ## 7. 에러와 에러 해결
