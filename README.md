@@ -1,4 +1,4 @@
-# Django DRF Project - AI 지식인 서비스
+# Django DRF Project - 🎓 AI 지식인 서비스
   * 질문을 하면 ChatGPT가 답변을 해주는 서비스 입니다.
   * 내가 한 질문과 ChatGPT의 답변이 게시물로 생성됩니다.
   * 다른 사람들의 질문들을 볼 수 있습니다.
@@ -108,63 +108,63 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 ### 4.1 디렉토리 구조
 ```
 ├── 📂FE
-│   ├── js
-│   │   ├── accounts
-│   │   │   ├── accounts-join.js
-│   │   │   ├── accounts-login.js
-│   │   │   ├── accounts-logout.js
-│   │   │   └── accounts-profile.js
-│   │   └── blog
-│   │       ├── blog-create.js
-│   │       └── blog-main.js
-│   └── templates
-│       ├── accounts
-│       │   ├── join.html
-│       │   ├── login.html
-│       │   ├── logout.html
-│       │   └── profile.html
-│       └── blog
-│           ├── create.html
-│           └── index.html
-├── README.md
+│   ├── 📂js
+│   │   ├── 📂accounts
+│   │   │   ├── 📜accounts-join.js
+│   │   │   ├── 📜accounts-login.js
+│   │   │   ├── 📜accounts-logout.js
+│   │   │   └── 📜accounts-profile.js
+│   │   └── 📂blog
+│   │       ├── 📜blog-create.js
+│   │       └── 📜blog-main.js
+│   └── 📂templates
+│       ├── 📂accounts
+│       │   ├── 📜join.html
+│       │   ├── 📜login.html
+│       │   ├── 📜logout.html
+│       │   └── 📜profile.html
+│       └── 📂blog
+│           ├── 📜create.html
+│           └── 📜index.html
+├── 📜README.md
 ├── 📂accounts
-│   ├── __init__.py
-│   ├── __pycache__
-│   ├── admin.py
-│   ├── apps.py
-│   ├── managers.py
-│   ├── migrations
-│   ├── models.py
-│   ├── serializers.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
+│   ├── 📜__init__.py
+│   ├── 📜__pycache__
+│   ├── 📜admin.py
+│   ├── 📜apps.py
+│   ├── 📜managers.py
+│   ├── 📂migrations
+│   ├── 📜models.py
+│   ├── 📜serializers.py
+│   ├── 📜tests.py
+│   ├── 📜urls.py
+│   └── 📜views.py
 ├── 📂blog
-│   ├── __init__.py
-│   ├── __pycache__
-│   ├── admin.py
-│   ├── apps.py
-│   ├── migrations
-│   │   ├── __init__.py
-│   │   └── __pycache__
-│   ├── models.py
-│   ├── permissions.py
-│   ├── serializers.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-├── db.sqlite3
-├── manage.py
-├── media
+│   ├── 📜__init__.py
+│   ├── 📜__pycache__
+│   ├── 📜admin.py
+│   ├── 📜apps.py
+│   ├── 📂migrations
+│   │   ├── 📜__init__.py
+│   │   └── 📜__pycache__
+│   ├── 📜models.py
+│   ├── 📜permissions.py
+│   ├── 📜serializers.py
+│   ├── 📜tests.py
+│   ├── 📜urls.py
+│   └── 📜views.py
+├── 📜db.sqlite3
+├── 📜manage.py
+├── 📂media
 ├── 📂project
-│   ├── __init__.py
-│   ├── __pycache__
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── requirements.txt
-└── static
+│   ├── 📜__init__.py
+│   ├── 📜__pycache__
+│   ├── 📜asgi.py
+│   ├── 📜settings.py
+│   ├── 📜urls.py
+│   └── 📜wsgi.py
+├── 📜requirements.txt
+└── 📂static
 ```
 
 ### 4.2 개발일정(WBS)
@@ -249,4 +249,20 @@ gantt
 
 
 
-## 7. 에러와 에러 해결
+## 7. 발생한 문제와 문제 해결
+
+### 문제1 : 적절하지않은 Mixin사용
+* 상황 : 현재 접속한 유저의 프로필 정보를 나타내는 ProfileViewSet을 만들기위해 모델 인스턴스를 리턴해 주는 믹스인 RetrieveModelMixin을 사용했으나 '/accounts/profile/'에서 바로 모델 인스턴스를 리턴해주지 않고 '/accounts/profile/1' 처럼 User모델의 pk값으로 모델 인스턴스를 선택해서 반환을 해주었다.
+* 원인 : RetrieveModelMixin은 개별 항목 조회를 구현할 때 주로 사용되기 떄문에 현재 접속한 유저의 정보만을 불러오려는 나의 목적에는 알맞지 않는다.
+* 해결 : Queryset을 리스팅하는 믹스인 ListModelMixin을 사용해서 현재 접속된 유저의 모델만을 리턴하도록 하여 해결했다.
+
+
+### 문제2 : 이벤트 리스너의 중첩
+* 상황 : 메인 화면에서 게시글 상세보기를 한번 들어갔다가 다시 메인화면을 나왔다가 할 때 마다 게시물 상세보기에서 댓글 작성 버튼을 눌렀을 때 같은 내용으로 생성되는 댓글의 수가 늘어난다.
+* 원인 : HTML파일에서 미리 만들어둔 댓글 작성 버튼을 style속성으로 숨겨두기만 했었는데, 게시글 상세보기를 클릭했을 때 댓글 작성 버튼에 이벤트를 추가하도록 JS코드로 구현해서 이벤트 리스너가 계속 중첩이 되는것이었다.
+* 해결 : 댓글 작성 버튼을 HTML파일에서 미리 만들어두는것이 아닌, 게시글 상세보기를 클릭했을 때 동적으로 생성되도록 JS코드를 수정해서 이벤트 리스너의 중첩을 막았다.
+
+### 문제3 : HTTPS -> HTTP 통신
+* 상황 : 프론트 배포를 마친 후, 테스트를 하는데 서버에 request를 보내지 못하고 fetch에러가 계속 뜨는 문제가 생겼다.
+* 원인 : Netlify를 통해서 프론트 엔드 배포를 하였는데 Netlify는 HTTPS를 사용하는 반면 EC2로 배포한 서버는 SSL인증을 받지 않아서 HTTP를 사용해서 HTTPS와 HTTP의 통신을 금지하는 웹 보안 문제로 인해 프론트와 서버간 통신에 어려움이 있었다.
+* 해결 : 서버를 HTTPS로 바꿀수도 있었지만, Netlify 문서를 찾아보니 리다이렉트 경로를 설정해서 모든 요청을 CDN서버에서 바로 프록시 시키는 방식으로 HTTP서버와 통신을 가능하게 하는 방법이 있어서 이를 통해 해결했다.
