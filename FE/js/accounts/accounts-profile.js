@@ -1,19 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const profileContainer = document.getElementById('profile-container');
-
     // 로그인 시 저장한 토큰과 사용자 정보를 불러옴
     const { accessToken } = loadTokens();
     const userInfo = loadUserInfo();
-
     if (!accessToken || !userInfo) {
         // 토큰이 없으면 로그인 페이지로 리다이렉트 또는 다른 처리
         window.location.href = '/FE/templates/accounts/login.html';
         return;
     }
-
     // 프로필 정보 요청
     const apiUrl = 'http://52.78.33.155:8000/accounts/profile/';
-
     fetch(apiUrl, {
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -35,12 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Error:', error);
         profileContainer.innerHTML = '<p>프로필을 찾을 수 없습니다.</p>';
     });
-
     function loadTokens() {
         const accessToken = localStorage.getItem('access_token');
         return { accessToken };
     }
-
     function loadUserInfo() {
         const userInfoString = localStorage.getItem('user_info');
         return userInfoString ? JSON.parse(userInfoString) : null;

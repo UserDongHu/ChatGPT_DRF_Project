@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const logoutButton = document.getElementById('logout-btn');
-
     logoutButton.addEventListener('click', function () {
         // 로그아웃 요청
         const apiUrl = 'http://52.78.33.155:8000/accounts/logout/';
-
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -25,11 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
         });
     });
-
     function loadAccessToken() {
         return localStorage.getItem('access_token');
     }
-
     function clearTokens() {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');

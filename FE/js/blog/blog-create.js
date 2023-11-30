@@ -1,18 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     const createPostForm = document.getElementById('create-post-form');
-
     createPostForm.addEventListener('submit', function (event) {
         event.preventDefault();
-
         const formData = new FormData(createPostForm);
         const formDataObject = {};
         formData.forEach((value, key) => {
             formDataObject[key] = value;
         });
-
         const apiUrl = 'http://52.78.33.155:8000/blog/posts/';
         const accessToken = localStorage.getItem('access_token');
-
         fetch(apiUrl, {
             method: 'POST',
             headers: {

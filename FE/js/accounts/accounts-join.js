@@ -4,15 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     joinForm.addEventListener('submit', function (event) {
         event.preventDefault();
-
         const formData = new FormData(joinForm);
         const formDataObject = {};
         formData.forEach((value, key) => {
             formDataObject[key] = value;
         });
-
         const apiUrl = 'http://52.78.33.155:8000/accounts/join/';
-
         fetch(apiUrl, {
             method: 'POST',
             headers: {
