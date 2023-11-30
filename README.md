@@ -63,6 +63,33 @@
 ### 3.2 URL 구조
 
 Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33.155:8000/api/schema/swagger-ui/)
+<br></br>
+
+- accounts
+
+| App       | Method        | URL                               | Views Class        | Note           |
+|-----------|---------------|-----------------------------------|------------------- |----------------|
+| accounts  | POST   | '/accounts/join/'                         |   -                 |회원가입  |
+| accounts  | POST   | '/accounts/login/'                         |   -                 |로그인  |
+| accounts  | POST   | '/accounts/logout/'                         |   -                 |로그아웃 |
+| accounts  | GET   | '/accounts/profile/'                         |   ProfileViewSet       |내 프로필  |
+
+- blog
+
+| App       | Method        | URL                               | Views Class        | Note           |
+|-----------|---------------|-----------------------------------|------------------- |----------------|
+| blog  | GET   | '/blog/posts/'                         |   PostViewSet                 |게시글 목록 |
+| blog  | POST   | '/blog/posts/'                       |   PostViewSet                 |게시글 생성  |
+| blog  | GET   | '/blog/posts/{post_id}/'                |    PostViewSet       |게시글 상세보기 / 게시글 조회수 증가 |
+| blog  | PATCH   | '/blog/posts/{post_id}/'                  |   ProfileViewSet    |게시글 수정 |
+| blog  | DELETE   | '/blog/posts/{post_id}/'                   |   ProfileViewSet    |게시글 삭제 |
+| blog  | POST   | '/blog/posts/{post_id}/like/'                   |   ProfileViewSet    |게시글 좋아요 증가|
+| blog  | GET   | '/blog/posts/{post_id}/comments/'                   |   CommentViewSet    | 게시물의 댓글 목록 |
+| blog  | POST   | '/blog/posts/{post_id}/comments/'                   |   CommentViewSet    | 게시물의 댓글 생성 |
+| blog  | GET   | '/blog/posts/{post_id}/comments/{comment_id}/'       |   CommentViewSet    | 게시물의 특정 댓글 보기 |
+| blog  | PATCH   | '/blog/posts/{post_id}/comments/{comment_id}/'       |   CommentViewSet    | 게시물의 특정 댓글 수정 |
+| blog  | DELETE   | '/blog/posts/{post_id}/comments/{comment_id}/'       |   CommentViewSet    | 게시물의 특정 댓글 삭제 |
+
 
 
 ### 3.3 플로우 차트
@@ -137,7 +164,7 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 │   ├── urls.py
 │   └── wsgi.py
 ├── requirements.txt
-├── static
+└── static
 ```
 
 ### 4.2 개발일정(WBS)
