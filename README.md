@@ -208,7 +208,8 @@ gantt
 
 ## 5. ERD 
 
-<img width="1001" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/d58d67c7-d8a0-4b7c-8a26-9c867259df03">
+<img width="792" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/3294cfc8-c674-4b8f-b1e8-db1a2f60c584">
+
 
 
 
