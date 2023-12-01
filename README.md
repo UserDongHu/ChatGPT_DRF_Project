@@ -72,8 +72,8 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 | App       | Method        | URL                               | Views Class        | Note           |
 |-----------|---------------|-----------------------------------|------------------- |----------------|
 | accounts  | POST   | '/accounts/join/'                         |   -                 |회원가입  |
-| accounts  | POST   | '/accounts/login/'                         |   -                 |로그인  |
-| accounts  | POST   | '/accounts/logout/'                         |   -                 |로그아웃 |
+| accounts  | POST   | '/accounts/login/'                         |   -                 |로그인 / JWT발급  |
+| accounts  | POST   | '/accounts/logout/'                         |   -                 |로그아웃 / JWT삭제 |
 | accounts  | GET   | '/accounts/profile/'                         |   ProfileViewSet       |내 프로필  |
 
 - blog
@@ -267,5 +267,5 @@ gantt
 
 ### 문제3 : HTTPS -> HTTP 통신
 * 상황 : 프론트 배포를 마친 후, 테스트를 하는데 서버에 request를 보내지 못하고 fetch에러가 계속 뜨는 문제가 생겼다.
-* 원인 : Netlify를 통해서 프론트 엔드 배포를 하였는데 Netlify는 HTTPS를 사용하는 반면 EC2로 배포한 서버는 SSL인증을 받지 않아서 HTTP를 사용해서 HTTPS와 HTTP의 통신을 금지하는 웹 보안 문제로 인해 프론트와 서버간 통신에 어려움이 있었다.
+* 원인 : Netlify를 통해서 프론트 엔드 배포를 하였는데 Netlify는 HTTPS를 사용하는 반면 AWS로 배포한 서버는 SSL인증을 받지 않아서 HTTP를 사용해서 HTTPS와 HTTP의 통신을 금지하는 웹 보안 문제로 인해 프론트와 서버간 통신에 어려움이 있었다.
 * 해결 : 서버를 HTTPS로 바꿀수도 있었지만, Netlify 문서를 찾아보니 리다이렉트 경로를 설정해서 모든 요청을 CDN서버에서 바로 프록시 시키는 방식으로 HTTP서버와 통신을 가능하게 하는 방법이 있어서 이를 통해 해결했다.
