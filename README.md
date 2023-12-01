@@ -81,7 +81,7 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 | App       | Method        | URL                               | Views Class        | Note           |
 |-----------|---------------|-----------------------------------|------------------- |----------------|
 | blog  | GET   | '/blog/posts/'                         |   PostViewSet                 |게시글 목록 |
-| blog  | POST   | '/blog/posts/'                       |   PostViewSet                 |게시글 생성  |
+| blog  | POST   | '/blog/posts/'                       |   PostViewSet                 |게시글 생성 / ChatGPT API 요청 |
 | blog  | GET   | '/blog/posts/{post_id}/'                |    PostViewSet       |게시글 상세보기 / 게시글 조회수 증가 |
 | blog  | PATCH   | '/blog/posts/{post_id}/'                  |   PostViewSet    |게시글 수정 |
 | blog  | DELETE   | '/blog/posts/{post_id}/'                   |  PostViewSet    |게시글 삭제 |
