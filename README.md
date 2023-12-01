@@ -1,5 +1,6 @@
 # Django DRF Project - 🎓 AI 지식인 서비스
-  * 질문을 하면 ChatGPT가 답변을 해주는 서비스 입니다.
+  * AI가 답변을 해주는 지식인 서비스 입니다.
+  * 질문을 하면 ChatGPT가 답변을 해줍니다.
   * 내가 한 질문과 ChatGPT의 답변이 게시물로 생성됩니다.
   * 다른 사람들의 질문들을 볼 수 있습니다.
     
@@ -82,9 +83,9 @@ Swagger link : [http://52.78.33.155:8000/api/schema/swagger-ui/](http://52.78.33
 | blog  | GET   | '/blog/posts/'                         |   PostViewSet                 |게시글 목록 |
 | blog  | POST   | '/blog/posts/'                       |   PostViewSet                 |게시글 생성  |
 | blog  | GET   | '/blog/posts/{post_id}/'                |    PostViewSet       |게시글 상세보기 / 게시글 조회수 증가 |
-| blog  | PATCH   | '/blog/posts/{post_id}/'                  |   ProfileViewSet    |게시글 수정 |
-| blog  | DELETE   | '/blog/posts/{post_id}/'                   |   ProfileViewSet    |게시글 삭제 |
-| blog  | POST   | '/blog/posts/{post_id}/like/'                   |   ProfileViewSet    |게시글 좋아요 증가|
+| blog  | PATCH   | '/blog/posts/{post_id}/'                  |   PostViewSet    |게시글 수정 |
+| blog  | DELETE   | '/blog/posts/{post_id}/'                   |  PostViewSet    |게시글 삭제 |
+| blog  | POST   | '/blog/posts/{post_id}/like/'                   |   PostViewSet    |게시글 좋아요 증가|
 | blog  | GET   | '/blog/posts/{post_id}/comments/'                   |   CommentViewSet    | 게시물의 댓글 목록 |
 | blog  | POST   | '/blog/posts/{post_id}/comments/'                   |   CommentViewSet    | 게시물의 댓글 생성 |
 | blog  | GET   | '/blog/posts/{post_id}/comments/{comment_id}/'       |   CommentViewSet    | 게시물의 특정 댓글 보기 |
@@ -207,7 +208,8 @@ gantt
 
 ## 5. ERD 
 
-<img width="769" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/47abefcd-aa6c-4185-ad78-8cd490a834ba">
+<img width="1001" alt="image" src="https://github.com/UserDongHu/ChatGPT_DRF_Project/assets/137512514/d58d67c7-d8a0-4b7c-8a26-9c867259df03">
+
 
 
 
